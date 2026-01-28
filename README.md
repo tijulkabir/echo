@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/188c42f8-d249-4a72-b27a-e2b4f10a00a8" alt="Echo Android Logo" width="480">
+    <img src="docs/echo-logo.png" alt="Echo Android Logo" width="200">
 </p>
 
 > [!WARNING]
