@@ -36,10 +36,12 @@ import com.echo.android.onboarding.OnboardingCoordinator
 import com.echo.android.onboarding.OnboardingState
 import com.echo.android.onboarding.PermissionExplanationScreen
 import com.echo.android.onboarding.PermissionManager
+import com.echo.android.onboarding.UsernameSetupScreen
+import com.echo.android.onboarding.UsernamePreferenceManager
 import com.echo.android.ui.ChatScreen
 import com.echo.android.ui.ChatViewModel
 import com.echo.android.ui.OrientationAwareActivity
-import com.echo.android.ui.theme.BitchatTheme
+import com.echo.android.ui.theme.EchoTheme
 import com.echo.android.nostr.PoWPreferenceManager
 import com.echo.android.services.VerificationService
 import kotlinx.coroutines.delay
@@ -143,7 +145,7 @@ class MainActivity : OrientationAwareActivity() {
         )
         
         setContent {
-            BitchatTheme {
+            EchoTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     containerColor = MaterialTheme.colorScheme.background
@@ -282,6 +284,17 @@ class MainActivity : OrientationAwareActivity() {
                     },
                     onSkip = {
                         onboardingCoordinator.skipBackgroundLocation()
+                    }
+                )
+            }
+
+            OnboardingState.USERNAME_SETUP -> {
+                UsernameSetupScreen(
+                    modifier = modifier,
+                    onContinue = { username ->
+                        UsernamePreferenceManager.setUsername(username)
+                        chatViewModel.setNickname(username)
+                        mainViewModel.updateOnboardingState(OnboardingState.COMPLETE)
                     }
                 )
             }
@@ -663,6 +676,10 @@ class MainActivity : OrientationAwareActivity() {
                 PoWPreferenceManager.init(this@MainActivity)
                 Log.d("MainActivity", "PoW preferences initialized")
                 
+                // Initialize Username preferences
+                UsernamePreferenceManager.init(this@MainActivity)
+                Log.d("MainActivity", "Username preferences initialized")
+                
                 // Initialize Location Notes Manager (extracted to separate file)
                 com.echo.android.nostr.LocationNotesInitializer.initialize(this@MainActivity)
                 
@@ -687,7 +704,19 @@ class MainActivity : OrientationAwareActivity() {
                 // Small delay to ensure mesh service is fully initialized
                 delay(500)
                 Log.d("MainActivity", "App initialization complete")
-                mainViewModel.updateOnboardingState(OnboardingState.COMPLETE)
+                
+                // Check if username is set, if not show username setup screen
+                if (!UsernamePreferenceManager.hasSetUsername()) {
+                    Log.d("MainActivity", "Username not set, showing username setup screen")
+                    mainViewModel.updateOnboardingState(OnboardingState.USERNAME_SETUP)
+                } else {
+                    // Load saved username into chat
+                    val savedUsername = UsernamePreferenceManager.getUsername()
+                    if (savedUsername.isNotEmpty()) {
+                        chatViewModel.setNickname(savedUsername)
+                    }
+                    mainViewModel.updateOnboardingState(OnboardingState.COMPLETE)
+                }
             } catch (e: Exception) {
                 Log.e("MainActivity", "Failed to initialize app", e)
                 handleOnboardingFailed("Failed to initialize the app: ${e.message}")

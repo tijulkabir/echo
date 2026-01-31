@@ -16,35 +16,52 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 
-// Colors that match the iOS bitchat theme
+// Echo color palette - sleek dark with cyan accent
+private val EchoCyan = Color(0xFF00D4FF)          // Primary cyan from icon
+private val EchoPurple = Color(0xFF8B5CF6)        // Secondary purple accent
+private val EchoDarkBg = Color(0xFF0D0D12)        // Deep dark background
+private val EchoDarkSurface = Color(0xFF16161D)  // Elevated surface
+private val EchoTextLight = Color(0xFFE8E8EC)    // Soft white text
+private val EchoTextMuted = Color(0xFF9CA3AF)    // Muted gray text
+
+// Sleek dark color scheme
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF39FF14),        // Bright green (terminal-like)
+    primary = EchoCyan,
     onPrimary = Color.Black,
-    secondary = Color(0xFF2ECB10),      // Darker green
-    onSecondary = Color.Black,
-    background = Color.Black,
-    onBackground = Color(0xFF39FF14),   // Green on black
-    surface = Color(0xFF111111),        // Very dark gray
-    onSurface = Color(0xFF39FF14),      // Green text
-    error = Color(0xFFFF5555),          // Red for errors
-    onError = Color.Black
+    secondary = EchoPurple,
+    onSecondary = Color.White,
+    tertiary = EchoPurple,
+    background = EchoDarkBg,
+    onBackground = EchoTextLight,
+    surface = EchoDarkSurface,
+    onSurface = EchoTextLight,
+    surfaceVariant = Color(0xFF1E1E26),
+    onSurfaceVariant = EchoTextMuted,
+    outline = Color(0xFF2A2A35),
+    error = Color(0xFFFF6B6B),
+    onError = Color.White
 )
 
+// Minimal monochrome light scheme
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF008000),        // Dark green
+    primary = Color(0xFF00A3CC),                  // Darker cyan for light mode
     onPrimary = Color.White,
-    secondary = Color(0xFF006600),      // Even darker green
+    secondary = Color(0xFF7C3AED),                // Darker purple
     onSecondary = Color.White,
-    background = Color.White,
-    onBackground = Color(0xFF008000),   // Dark green on white
-    surface = Color(0xFFF8F8F8),        // Very light gray
-    onSurface = Color(0xFF008000),      // Dark green text
-    error = Color(0xFFCC0000),          // Dark red for errors
+    tertiary = Color(0xFF7C3AED),
+    background = Color(0xFFFAFAFA),
+    onBackground = Color(0xFF1A1A1A),
+    surface = Color.White,
+    onSurface = Color(0xFF1A1A1A),
+    surfaceVariant = Color(0xFFF3F4F6),
+    onSurfaceVariant = Color(0xFF6B7280),
+    outline = Color(0xFFE5E7EB),
+    error = Color(0xFFDC2626),
     onError = Color.White
 )
 
 @Composable
-fun BitchatTheme(
+fun EchoTheme(
     darkTheme: Boolean? = null,
     content: @Composable () -> Unit
 ) {
@@ -89,3 +106,11 @@ fun BitchatTheme(
         content = content
     )
 }
+
+// Backward compatibility alias
+@Composable
+fun BitchatTheme(
+    darkTheme: Boolean? = null,
+    content: @Composable () -> Unit
+) = EchoTheme(darkTheme, content)
+
