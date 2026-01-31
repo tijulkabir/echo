@@ -1,308 +1,114 @@
 <p align="center">
-    <img src="docs/echo-logo.png" alt="Echo Android Logo" width="200">
+    <img src="docs/echo-logo.png" alt="Echo Logo" width="180">
 </p>
 
-> [!WARNING]
-> This software has not received external security review and may contain vulnerabilities and may not necessarily meet its stated security goals. Do not use it for sensitive use cases, and do not rely on its security until it has been reviewed. Work in progress.
+# Echo - Decentralized Mesh Messaging App
 
-# Echo for Android
+> **Mobile Application Development Project**  
+> 2nd Year, 1st Semester
 
-A secure, decentralized, peer-to-peer messaging app that works over Bluetooth mesh networks. No internet required for mesh chats, no servers, no phone numbers - just pure encrypted communication. Echo also supports geohash channels, which use an internet connection to connect you with others in your geographic area.
+## 📱 Project Overview
 
-This is the **Android port** of the original [Echo iOS app](https://github.com/jackjackbits/Echo), maintaining 100% protocol compatibility for cross-platform communication.
+Echo is an Android messaging application that enables peer-to-peer communication using Bluetooth mesh networking. The app allows users to send messages without requiring internet connectivity, making it useful for scenarios where traditional networks are unavailable.
 
-## Install Echo
+## ✨ What I Accomplished
 
-You can download the latest version of Echo for Android from the [GitHub Releases page](https://github.com/tijulkabir/echo/releases).
+### Core Features Implemented
 
-Or you can:
+- **Bluetooth Mesh Networking** - Devices automatically discover and connect to nearby peers
+- **End-to-End Encryption** - Messages are secured using industry-standard cryptography (X25519 + AES-256-GCM)
+- **Private & Channel Messaging** - Users can send direct messages or participate in topic-based group chats
+- **Offline Message Delivery** - Store-and-forward mechanism caches messages for offline users
+- **Username Setup** - First-launch prompt for users to set their nickname
+- **Modern UI Design** - Custom dark theme with sleek aesthetics using Jetpack Compose
 
-[<img alt="Get it on Google Play" height="60" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"/>](https://play.google.com/store/apps/details?id=com.Echo.droid)
+### Technical Highlights
 
-**Instructions:**
+| Component | Technology Used |
+|-----------|-----------------|
+| UI Framework | Jetpack Compose with Material Design 3 |
+| Architecture | MVVM (Model-View-ViewModel) |
+| Networking | Bluetooth Low Energy (BLE) |
+| Encryption | BouncyCastle (X25519, Ed25519, AES-GCM) |
+| Async Operations | Kotlin Coroutines |
+| Data Storage | EncryptedSharedPreferences |
 
-1.  **Download the APK:** On your Android device, navigate to the link above and download the latest `.apk` file. Open it.
-2.  **Allow Unknown Sources:** On some devices, before you can install the APK, you may need to enable "Install from unknown sources" in your device's settings. This is typically found under **Settings > Security** or **Settings > Apps & notifications > Special app access**.
-3.  **Install:** Open the downloaded `.apk` file to begin the installation.
+### Key Accomplishments
 
-## License
+1. **Custom Theme System** - Designed and implemented a sleek dark color scheme with cyan accents
+2. **Onboarding Flow** - Built complete permission handling and username setup screens
+3. **Mesh Protocol** - Implemented multi-hop message routing with TTL-based delivery
+4. **Security Features** - Integrated end-to-end encryption for all private communications
+5. **Battery Optimization** - Adaptive power management for background operation
 
-This project is released into the public domain. See the [LICENSE](LICENSE.md) file for details.
+## 🛠️ Technologies Used
 
-## Features
+- **Language**: Kotlin
+- **UI**: Jetpack Compose
+- **Minimum SDK**: Android 8.0 (API 26)
+- **Build System**: Gradle with Kotlin DSL
 
-- **✅ Cross-Platform Compatible**: Full protocol compatibility with iOS Echo
-- **✅ Decentralized Mesh Network**: Automatic peer discovery and multi-hop message relay over Bluetooth LE
-- **✅ End-to-End Encryption**: X25519 key exchange + AES-256-GCM for private messages
-- **✅ Channel-Based Chats**: Topic-based group messaging with optional password protection
-- **✅ Store & Forward**: Messages cached for offline peers and delivered when they reconnect
-- **✅ Privacy First**: No accounts, no phone numbers, no persistent identifiers
-- **✅ IRC-Style Commands**: Familiar `/join`, `/msg`, `/who` style interface
-- **✅ Message Retention**: Optional channel-wide message saving controlled by channel owners
-- **✅ Emergency Wipe**: Triple-tap logo to instantly clear all data
-- **✅ Modern Android UI**: Jetpack Compose with Material Design 3
-- **✅ Dark/Light Themes**: Terminal-inspired aesthetic matching iOS version
-- **✅ Battery Optimization**: Adaptive scanning and power management
+## 📋 Permissions Required
 
-## Android Setup
+| Permission | Purpose |
+|------------|---------|
+| Bluetooth | BLE mesh communication |
+| Location | Required by Android for BLE scanning |
+| Notifications | Message alerts |
 
-### Prerequisites
+## 🚀 How to Build
 
-- **Android Studio**: Arctic Fox (2020.3.1) or newer
-- **Android SDK**: API level 26 (Android 8.0) or higher
-- **Kotlin**: 1.8.0 or newer
-- **Gradle**: 7.0 or newer
-
-### Build Instructions
-
-1. **Clone the repository:**
+1. Clone the repository:
    ```bash
    git clone https://github.com/tijulkabir/echo.git
-   cd echo
    ```
 
-2. **Open in Android Studio:**
+2. Open in Android Studio
+
+3. Build the project:
    ```bash
-   # Open Android Studio and select "Open an Existing Project"
-   # Navigate to the Echo-android directory
+   ./gradlew assembleDebug
    ```
 
-3. **Build the project:**
-   ```bash
-   ./gradlew build
-   ```
-
-4. **Install on device:**
+4. Install on device:
    ```bash
    ./gradlew installDebug
    ```
 
-### Development Build
+## 📸 App Features
 
-For development builds with debugging enabled:
+- **Decentralized Communication** - No servers required for mesh messaging
+- **Privacy-Focused** - No accounts, no phone numbers needed
+- **IRC-Style Commands** - Familiar commands like `/join`, `/msg`, `/who`
+- **Emergency Wipe** - Triple-tap logo to clear all data instantly
 
-```bash
-./gradlew assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+## 📁 Project Structure
+
+```
+app/src/main/java/com/echo/android/
+├── ui/                 # UI components and themes
+├── mesh/               # Bluetooth mesh networking
+├── nostr/              # Encryption services
+├── onboarding/         # Permission and setup screens
+├── service/            # Background services
+└── util/               # Helper utilities
 ```
 
-### Release Build
+## 🎯 Learning Outcomes
 
-For production releases:
+Through this project, I gained practical experience in:
 
-```bash
-./gradlew assembleRelease
-```
+- Android development with Kotlin and Jetpack Compose
+- Bluetooth Low Energy (BLE) programming
+- Implementing cryptographic protocols
+- MVVM architecture pattern
+- Managing Android permissions and lifecycle
+- UI/UX design with Material Design 3
 
-## Android-Specific Requirements
+## ⚠️ Note
 
-### Permissions
+This is an academic project developed for learning purposes. It is not intended for production use or distribution on app stores.
 
-The app requires the following permissions (automatically requested):
+---
 
-- **Bluetooth**: Core BLE functionality
-- **Location**: Required for BLE scanning on Android
-- **Network**: Expand your mesh through public internet relays
-- **Notifications**: Message alerts and background updates
-
-### Hardware Requirements
-
-- **Bluetooth LE (BLE)**: Required for mesh networking
-- **Android 8.0+**: API level 26 minimum
-- **RAM**: 2GB recommended for optimal performance
-
-## Usage
-
-### Basic Commands
-
-- `/j #channel` - Join or create a channel
-- `/m @name message` - Send a private message
-- `/w` - List online users
-- `/channels` - Show all discovered channels
-- `/block @name` - Block a peer from messaging you
-- `/block` - List all blocked peers
-- `/unblock @name` - Unblock a peer
-- `/clear` - Clear chat messages
-- `/pass [password]` - Set/change channel password (owner only)
-- `/transfer @name` - Transfer channel ownership
-- `/save` - Toggle message retention for channel (owner only)
-
-### Getting Started
-
-1. **Install the app** on your Android device (requires Android 8.0+)
-2. **Grant permissions** for Bluetooth and location when prompted
-3. **Launch Echo** - it will auto-start mesh networking
-4. **Set your nickname** or use the auto-generated one
-5. **Connect automatically** to nearby iOS and Android Echo users
-6. **Join a channel** with `/j #general` or start chatting in public
-7. **Messages relay** through the mesh network to reach distant peers
-
-### Android UI Features
-
-- **Jetpack Compose UI**: Modern Material Design 3 interface
-- **Dark/Light Themes**: Terminal-inspired aesthetic matching iOS
-- **Haptic Feedback**: Vibrations for interactions and notifications
-- **Adaptive Layout**: Optimized for various Android screen sizes
-- **Message Status**: Real-time delivery and read receipts
-- **RSSI Indicators**: Signal strength colors for each peer
-
-### Channel Features
-
-- **Password Protection**: Channel owners can set passwords with `/pass`
-- **Message Retention**: Owners can enable mandatory message saving with `/save`
-- **@ Mentions**: Use `@nickname` to mention users (with autocomplete)
-- **Ownership Transfer**: Pass control to trusted users with `/transfer`
-
-## Security & Privacy
-
-### Encryption
-- **Private Messages**: X25519 key exchange + AES-256-GCM encryption
-- **Channel Messages**: Argon2id password derivation + AES-256-GCM
-- **Digital Signatures**: Ed25519 for message authenticity
-- **Forward Secrecy**: New key pairs generated each session
-
-### Privacy Features
-- **No Registration**: No accounts, emails, or phone numbers required
-- **Ephemeral by Default**: Messages exist only in device memory
-- **Cover Traffic**: Random delays and dummy messages prevent traffic analysis
-- **Emergency Wipe**: Triple-tap logo to instantly clear all data
-- **Bundled Tor Support**: Built-in Tor network integration for enhanced privacy when internet connectivity is available
-
-## Performance & Efficiency
-
-### Message Compression
-- **LZ4 Compression**: Automatic compression for messages >100 bytes
-- **30-70% bandwidth savings** on typical text messages
-- **Smart compression**: Skips already-compressed data
-
-### Battery Optimization
-- **Adaptive Power Modes**: Automatically adjusts based on battery level
-  - Performance mode: Full features when charging or >60% battery
-  - Balanced mode: Default operation (30-60% battery)
-  - Power saver: Reduced scanning when <30% battery
-  - Ultra-low power: Emergency mode when <10% battery
-- **Background efficiency**: Automatic power saving when app backgrounded
-- **Configurable scanning**: Duty cycle adapts to battery state
-
-### Network Efficiency
-- **Optimized Bloom filters**: Faster duplicate detection with less memory
-- **Message aggregation**: Batches small messages to reduce transmissions
-- **Adaptive connection limits**: Adjusts peer connections based on power mode
-
-## Technical Architecture
-
-### Binary Protocol
-Echo uses an efficient binary protocol optimized for Bluetooth LE:
-- Compact packet format with 1-byte type field
-- TTL-based message routing (max 7 hops)
-- Automatic fragmentation for large messages
-- Message deduplication via unique IDs
-
-### Mesh Networking
-- Each device acts as both client and peripheral
-- Automatic peer discovery and connection management
-- Store-and-forward for offline message delivery
-- Adaptive duty cycling for battery optimization
-
-### Android-Specific Optimizations
-- **Coroutine Architecture**: Asynchronous operations for mesh networking
-- **Kotlin Coroutines**: Thread-safe concurrent mesh operations
-- **EncryptedSharedPreferences**: Secure storage for user settings
-- **Lifecycle-Aware**: Proper handling of Android app lifecycle
-- **Battery Optimization**: Foreground service and adaptive scanning
-
-## Android Technical Architecture
-
-### Core Components
-
-1. **EchoApplication.kt**: Application-level initialization and dependency injection
-2. **MainActivity.kt**: Main activity handling permissions and UI hosting
-3. **ChatViewModel.kt**: MVVM pattern managing app state and business logic
-4. **BluetoothMeshService.kt**: Core BLE mesh networking (central + peripheral roles)
-5. **EncryptionService.kt**: Cryptographic operations using BouncyCastle
-6. **BinaryProtocol.kt**: Binary packet encoding/decoding matching iOS format
-7. **ChatScreen.kt**: Jetpack Compose UI with Material Design 3
-
-### Dependencies
-
-- **Jetpack Compose**: Modern declarative UI
-- **BouncyCastle**: Cryptographic operations (X25519, Ed25519, AES-GCM)
-- **Nordic BLE Library**: Reliable Bluetooth LE operations
-- **Kotlin Coroutines**: Asynchronous programming
-- **LZ4**: Message compression (when enabled)
-- **EncryptedSharedPreferences**: Secure local storage
-
-### Binary Protocol Compatibility
-
-The Android implementation maintains 100% binary protocol compatibility with iOS:
-- **Header Format**: Identical 13-byte header structure
-- **Packet Types**: Same message types and routing logic
-- **Encryption**: Identical cryptographic algorithms and key exchange
-- **UUIDs**: Same Bluetooth service and characteristic identifiers
-- **Fragmentation**: Compatible message fragmentation for large content
-
-## Publishing to Google Play
-
-### Preparation
-
-1. **Update version information:**
-   ```kotlin
-   // In app/build.gradle.kts
-   defaultConfig {
-       versionCode = 2  // Increment for each release
-       versionName = "1.1.0"  // User-visible version
-   }
-   ```
-
-2. **Create a signed release build:**
-   ```bash
-   ./gradlew assembleRelease
-   ```
-
-3. **Generate app bundle (recommended for Play Store):**
-   ```bash
-   ./gradlew bundleRelease
-   ```
-
-### Play Store Requirements
-
-- **Target API**: Latest Android API (currently 34)
-- **Privacy Policy**: Required for apps requesting sensitive permissions
-- **App Permissions**: Justify Bluetooth and location usage
-- **Content Rating**: Complete questionnaire for age-appropriate content
-
-### Distribution
-
-- **Google Play Store**: Main distribution channel
-- **F-Droid**: For open-source distribution
-- **Direct APK**: For testing and development
-
-## Cross-Platform Communication
-
-This Android port enables seamless communication with the original iOS Echo app:
-
-- **iPhone ↔ Android**: Full bidirectional messaging
-- **Mixed Groups**: iOS and Android users in same channels
-- **Feature Parity**: All commands and encryption work across platforms
-- **Protocol Sync**: Identical message format and routing behavior
-
-**iOS Version**: For iPhone/iPad users, get the original Echo at [github.com/jackjackbits/Echo](https://github.com/jackjackbits/Echo)
-
-## Contributing
-
-Contributions are welcome! Key areas for enhancement:
-
-1. **Performance**: Battery optimization and connection reliability
-2. **UI/UX**: Additional Material Design 3 features
-3. **Security**: Enhanced cryptographic features
-4. **Testing**: Unit and integration test coverage
-5. **Documentation**: API documentation and development guides
-
-## Support & Issues
-
-- **Bug Reports**: [Create an issue](../../issues) with device info and logs
-- **Feature Requests**: [Start a discussion](../../discussions)
-- **Security Issues**: Email security concerns privately
-- **iOS Compatibility**: Cross-reference with [original iOS repo](https://github.com/jackjackbits/Echo)
-
-For iOS-specific issues, please refer to the [original iOS Echo repository](https://github.com/jackjackbits/Echo).
+*Mobile Application Development - 2nd Year, 1st Semester*
