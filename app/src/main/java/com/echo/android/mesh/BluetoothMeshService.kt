@@ -792,8 +792,9 @@ class BluetoothMeshService(private val context: Context) {
                         Log.d(TAG, "🔐 Encrypted file payload: ${encrypted.size} bytes")
                         
                         // Create NOISE_ENCRYPTED packet (not FILE_TRANSFER!)
+                        // Use v2 for 4-byte payload length to support large encrypted files
                         val packet = BitchatPacket(
-                            version = 1u,
+                            version = 2u,
                             type = MessageType.NOISE_ENCRYPTED.value,
                             senderID = hexStringToByteArray(myPeerID),
                             recipientID = hexStringToByteArray(recipientPeerID),

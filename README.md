@@ -2,113 +2,73 @@
     <img src="docs/echo-logo.png" alt="Echo Logo" width="180">
 </p>
 
-# Echo - Decentralized Mesh Messaging App
+# Echo — Decentralized Mesh Messaging
 
-> **Mobile Application Development Project**  
-> 2nd Year, 1st Semester
+Echo is an Android messaging application built for secure, off-grid peer-to-peer communication over Bluetooth Low Energy (BLE) mesh networks. It enables users to communicate securely without relying on cellular data or internet infrastructure.
 
-## 📱 Project Overview
-
-Echo is an Android messaging application that enables peer-to-peer communication using Bluetooth mesh networking. The app allows users to send messages without requiring internet connectivity, making it useful for scenarios where traditional networks are unavailable.
-
-## ✨ What I Accomplished
-
-### Core Features Implemented
-
-- **Bluetooth Mesh Networking** - Devices automatically discover and connect to nearby peers
-- **End-to-End Encryption** - Messages are secured using industry-standard cryptography (X25519 + AES-256-GCM)
-- **Private & Channel Messaging** - Users can send direct messages or participate in topic-based group chats
-- **Offline Message Delivery** - Store-and-forward mechanism caches messages for offline users
-- **Username Setup** - First-launch prompt for users to set their nickname
-- **Modern UI Design** - Custom dark theme with sleek aesthetics using Jetpack Compose
-
-### Technical Highlights
-
-| Component | Technology Used |
-|-----------|-----------------|
-| UI Framework | Jetpack Compose with Material Design 3 |
-| Architecture | MVVM (Model-View-ViewModel) |
-| Networking | Bluetooth Low Energy (BLE) |
-| Encryption | BouncyCastle (X25519, Ed25519, AES-GCM) |
-| Async Operations | Kotlin Coroutines |
-| Data Storage | EncryptedSharedPreferences |
-
-### Key Accomplishments
-
-1. **Custom Theme System** - Designed and implemented a sleek dark color scheme with cyan accents
-2. **Onboarding Flow** - Built complete permission handling and username setup screens
-3. **Mesh Protocol** - Implemented multi-hop message routing with TTL-based delivery
-4. **Security Features** - Integrated end-to-end encryption for all private communications
-5. **Battery Optimization** - Adaptive power management for background operation
-
-## 🛠️ Technologies Used
-
-- **Language**: Kotlin
-- **UI**: Jetpack Compose
-- **Minimum SDK**: Android 8.0 (API 26)
-- **Build System**: Gradle with Kotlin DSL
-
-## 📋 Permissions Required
-
-| Permission | Purpose |
-|------------|---------|
-| Bluetooth | BLE mesh communication |
-| Location | Required by Android for BLE scanning |
-| Notifications | Message alerts |
-
-## 🚀 How to Build
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/tijulkabir/echo.git
-   ```
-
-2. Open in Android Studio
-
-3. Build the project:
-   ```bash
-   ./gradlew assembleDebug
-   ```
-
-4. Install on device:
-   ```bash
-   ./gradlew installDebug
-   ```
-
-## 📸 App Features
-
-- **Decentralized Communication** - No servers required for mesh messaging
-- **Privacy-Focused** - No accounts, no phone numbers needed
-- **IRC-Style Commands** - Familiar commands like `/join`, `/msg`, `/who`
-- **Emergency Wipe** - Triple-tap logo to clear all data instantly
-
-## 📁 Project Structure
-
-```
-app/src/main/java/com/echo/android/
-├── ui/                 # UI components and themes
-├── mesh/               # Bluetooth mesh networking
-├── nostr/              # Encryption services
-├── onboarding/         # Permission and setup screens
-├── service/            # Background services
-└── util/               # Helper utilities
-```
-
-## 🎯 Learning Outcomes
-
-Through this project, I gained practical experience in:
-
-- Android development with Kotlin and Jetpack Compose
-- Bluetooth Low Energy (BLE) programming
-- Implementing cryptographic protocols
-- MVVM architecture pattern
-- Managing Android permissions and lifecycle
-- UI/UX design with Material Design 3
-
-## ⚠️ Note
-
-This is an academic project developed for learning purposes. It is not intended for production use or distribution on app stores.
+This project was developed as a **Mobile Application Development** course project (2nd Year, 1st Semester), focusing on creating a polished user experience on top of a decentralized networking protocol.
 
 ---
 
-*Mobile Application Development - 2nd Year, 1st Semester*
+## ✨ Features & Implementation
+
+### Direct Messaging System
+Designed and implemented a dedicated full-screen Direct Messaging (DM) experience:
+- **Dedicated DM Interface:** A WhatsApp-style 1-on-1 chat UI (`DirectMessageChatScreen.kt`) with message bubbles and delivery status tracking.
+- **Conversation Management:** A centralized hub (`DirectMessageListScreen.kt`) showing active DM threads, unread notification badges, and peer identification.
+- **Dynamic Routing:** Custom navigation state management allowing seamless transitions between global mesh channels and private DM threads.
+
+### Custom Design System & UX
+Completely overhauled the visual identity to provide a premium, modern feel:
+- **Color Palette:** Implemented a custom `EchoCyan` and `EchoPurple` theme across the application, replacing the default terminal-style aesthetics.
+- **Typography:** Built a scalable, consistent typography system.
+- **Dynamic Theming:** Support for Dark, Light, and System-default visual modes.
+- **Brand Identity:** Custom launcher icons and logo design.
+
+### Onboarding & Identity
+- **Nickname Flow:** Created a seamless first-launch onboarding experience (`UsernameSetupScreen.kt`) with validation logic to establish peer identity before entering the mesh.
+
+### Core Enhancements & Stability
+- **Memory Management Fixes:** Identified and patched a critical race condition in the app's panic-wipe functionality by ensuring the process-wide `AppStateStore` is securely cleared before UI state collectors rehydrate, preventing deleted messages from reappearing.
+
+---
+
+## ⚙️ Core Engine (Powered by bitchat)
+
+Echo's underlying network, cryptography, and protocol layers are powered by the robust [bitchat-android](https://github.com/permissionlesstech/bitchat-android) open-source framework. By leveraging this engine, Echo supports:
+
+- **BLE Mesh Networking:** Decentralized multi-hop routing using Bluetooth Low Energy.
+- **End-to-End Encryption:** Secured via the Noise Protocol Framework (X25519, AES-256-GCM).
+- **Store-and-Forward:** Asynchronous message delivery caching.
+- **Nostr Integration:** Optional geo-spatial location channels backed by Nostr relays.
+- **Media Transfer:** Support for sharing images, files, and voice notes over BLE.
+
+---
+
+## 🛠️ Technical Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Kotlin |
+| UI | Jetpack Compose, Material Design 3 |
+| Architecture | MVVM with Coroutines & StateFlow |
+| Network Core | bitchat mesh protocol (BLE) |
+| Encryption | BouncyCastle, Noise Protocol |
+| Min SDK | Android 8.0 (API 26) |
+
+## 🚀 Build & Run
+
+```bash
+git clone https://github.com/tijulkabir/echo.git
+cd echo
+./gradlew assembleDebug
+./gradlew installDebug
+```
+
+> **Note:** A physical Android device is highly recommended, as Android Emulators have limited Bluetooth Low Energy support.
+
+## 📄 License & Attribution
+
+Echo's application layer and custom UI implementations are developed by Tijul Kabir Toha. 
+
+The underlying networking framework, protocol definitions, and core services are proudly inherited from the open-source [bitchat-android](https://github.com/permissionlesstech/bitchat-android) project. Licensed under the [MIT License](LICENSE.md).

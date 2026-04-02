@@ -176,7 +176,7 @@ class ChatViewModel(
     val peerDirect: StateFlow<Map<String, Boolean>> = state.peerDirect
     val showAppInfo: StateFlow<Boolean> = state.showAppInfo
     val showMeshPeerList: StateFlow<Boolean> = state.showMeshPeerList
-    val privateChatSheetPeer: StateFlow<String?> = state.privateChatSheetPeer
+
     val showVerificationSheet: StateFlow<Boolean> = state.showVerificationSheet
     val showSecurityVerificationSheet: StateFlow<Boolean> = state.showSecurityVerificationSheet
     val selectedLocationChannel: StateFlow<com.echo.android.geohash.ChannelID?> = state.selectedLocationChannel
@@ -184,6 +184,37 @@ class ChatViewModel(
     val geohashPeople: StateFlow<List<GeoPerson>> = state.geohashPeople
     val teleportedGeo: StateFlow<Set<String>> = state.teleportedGeo
     val geohashParticipantCounts: StateFlow<Map<String, Int>> = state.geohashParticipantCounts
+
+    // MARK: - Screen Navigation for Direct Messaging
+    enum class AppScreen { MESH, DM_LIST, DM_CHAT }
+
+    private val _currentScreen = MutableStateFlow(AppScreen.MESH)
+    val currentScreen: StateFlow<AppScreen> = _currentScreen.asStateFlow()
+
+    private val _dmChatPeerID = MutableStateFlow<String?>(null)
+    val dmChatPeerID: StateFlow<String?> = _dmChatPeerID.asStateFlow()
+
+    fun navigateToDMList() {
+        _currentScreen.value = AppScreen.DM_LIST
+    }
+
+    fun navigateToDMChat(peerID: String) {
+        _dmChatPeerID.value = peerID
+        startPrivateChat(peerID)
+        _currentScreen.value = AppScreen.DM_CHAT
+    }
+
+    fun navigateBackToMesh() {
+        endPrivateChat()
+        _dmChatPeerID.value = null
+        _currentScreen.value = AppScreen.MESH
+    }
+
+    fun navigateBackToDMList() {
+        endPrivateChat()
+        _dmChatPeerID.value = null
+        _currentScreen.value = AppScreen.DM_LIST
+    }
 
     init {
         // Note: Mesh service delegate is now set by MainActivity
@@ -410,7 +441,7 @@ class ChatViewModel(
         // Clear mesh mention notifications since user is now back in mesh chat
         clearMeshMentionNotifications()
         // Ensure sheet is hidden
-        hidePrivateChatSheet()
+
     }
 
     // MARK: - Open Latest Unread Private Chat
@@ -459,7 +490,7 @@ class ChatViewModel(
                 canonical ?: targetKey
             }
 
-            showPrivateChatSheet(openPeer)
+            navigateToDMChat(openPeer)
         } catch (e: Exception) {
             Log.w(TAG, "openLatestUnreadPrivateChat failed: ${e.message}")
         }
@@ -512,10 +543,6 @@ class ChatViewModel(
             ).also { canonical ->
                 if (canonical != state.getSelectedPrivateChatPeerValue()) {
                     privateChatManager.startPrivateChat(canonical, meshService)
-                    // If we're in the private chat sheet, update its active peer too
-                    if (state.getPrivateChatSheetPeerValue() != null) {
-                        showPrivateChatSheet(canonical)
-                    }
                 }
             }
             // Send private message
@@ -810,14 +837,6 @@ class ChatViewModel(
         state.setShowMeshPeerList(false)
     }
 
-    fun showPrivateChatSheet(peerID: String) {
-        state.setPrivateChatSheetPeer(peerID)
-    }
-
-    fun hidePrivateChatSheet() {
-        state.setPrivateChatSheetPeer(null)
-    }
-
     fun getPeerFingerprintForDisplay(peerID: String): String? {
         return verificationHandler.getPeerFingerprintForDisplay(peerID)
     }
@@ -906,6 +925,10 @@ class ChatViewModel(
     
     fun panicClearAllData() {
         Log.w(TAG, "🚨 PANIC MODE ACTIVATED - Clearing all sensitive data")
+        
+        // Clear process-wide AppStateStore FIRST to prevent active StateFlow collectors
+        // from re-hydrating stale messages back into ChatState after it's cleared
+        try { com.echo.android.services.AppStateStore.clear() } catch (_: Exception) { }
         
         // Clear all UI managers
         messageManager.clearAllMessages()
@@ -1061,7 +1084,7 @@ class ChatViewModel(
      */
     fun startGeohashDM(pubkeyHex: String) {
         geohashViewModel.startGeohashDM(pubkeyHex) { convKey ->
-            showPrivateChatSheet(convKey)
+            navigateToDMChat(convKey)
         }
     }
 
@@ -1104,7 +1127,7 @@ class ChatViewModel(
                 true
             }
             // Exit private chat
-            state.getSelectedPrivateChatPeerValue() != null || state.getPrivateChatSheetPeerValue() != null -> {
+            state.getSelectedPrivateChatPeerValue() != null -> {
                 endPrivateChat()
                 true
             }

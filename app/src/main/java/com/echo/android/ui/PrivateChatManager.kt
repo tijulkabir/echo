@@ -477,10 +477,10 @@ class PrivateChatManager(
                 state.setUnreadPrivateMessages(unread)
             }
 
-            // If we're currently viewing one of the temp aliases in the sheet, switch to the permanent ID
-            val sheetPeer = state.getPrivateChatSheetPeerValue()
-            if (sheetPeer != null && tryMergeKeys.contains(sheetPeer)) {
-                state.setPrivateChatSheetPeer(targetPeerID)
+            // If we're currently viewing one of the temp aliases in the full screen DM, switch to the permanent ID
+            val activePeer = state.getSelectedPrivateChatPeerValue()
+            if (activePeer != null && tryMergeKeys.contains(activePeer)) {
+                state.setSelectedPrivateChatPeer(targetPeerID)
             }
         }
     }

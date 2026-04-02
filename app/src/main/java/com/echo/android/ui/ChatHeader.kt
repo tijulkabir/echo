@@ -2,6 +2,7 @@ package com.echo.android.ui
 
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -380,17 +381,46 @@ private fun MainHeader(
             horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
 
-            // Unread private messages badge (click to open most recent DM)
-            if (hasUnreadPrivateMessages.isNotEmpty()) {
-                // Render icon directly to avoid symbol resolution issues
+            // Direct Messages button (always visible, with unread badge)
+            Box(
+                modifier = Modifier
+                    .size(20.dp)
+                    .clickable { viewModel.navigateToDMList() },
+                contentAlignment = Alignment.Center
+            ) {
                 Icon(
-                    imageVector = Icons.Filled.Email,
-                    contentDescription = stringResource(R.string.cd_unread_private_messages),
-                    modifier = Modifier
-                        .size(16.dp)
-                        .clickable { viewModel.openLatestUnreadPrivateChat() },
-                    tint = Color(0xFFFF9500)
+                    imageVector = Icons.Filled.Chat,
+                    contentDescription = "Direct Messages",
+                    modifier = Modifier.size(16.dp),
+                    tint = if (hasUnreadPrivateMessages.isNotEmpty()) {
+                        Color(0xFFFF9500)
+                    } else {
+                        colorScheme.onSurface.copy(alpha = 0.6f)
+                    }
                 )
+                // Unread badge
+                if (hasUnreadPrivateMessages.isNotEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .offset(x = 4.dp, y = (-4).dp)
+                            .size(10.dp)
+                            .background(
+                                color = Color(0xFFFF3B30),
+                                shape = androidx.compose.foundation.shape.CircleShape
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = if (hasUnreadPrivateMessages.size > 9) "9" else hasUnreadPrivateMessages.size.toString(),
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                fontSize = 7.sp,
+                                fontWeight = FontWeight.Bold
+                            ),
+                            color = Color.White
+                        )
+                    }
+                }
             }
 
             // Location channels button (matching iOS implementation) and bookmark grouped tightly

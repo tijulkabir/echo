@@ -571,7 +571,7 @@
         errorLine1="targetSdk = &quot;35&quot;"
         errorLine2="            ~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="7"
             column="13"/>
     </issue>
@@ -582,7 +582,7 @@
         errorLine1="sdk.dir=C:\\Users\\Toha\\AppData\\Local\\Android\\Sdk"
         errorLine2="         ~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/local.properties"
+            file="$HOME/Documents/eecchhoo/echo-android/local.properties"
             line="1"
             column="10"/>
     </issue>
@@ -825,7 +825,7 @@
         errorLine1="agp = &quot;8.10.1&quot;"
         errorLine2="      ~~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="3"
             column="7"/>
     </issue>
@@ -836,7 +836,7 @@
         errorLine1="agp = &quot;8.10.1&quot;"
         errorLine2="      ~~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="3"
             column="7"/>
     </issue>
@@ -858,7 +858,7 @@
         errorLine1="core-ktx = &quot;1.16.0&quot;"
         errorLine2="           ~~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="10"
             column="12"/>
     </issue>
@@ -869,7 +869,7 @@
         errorLine1="lifecycle-runtime = &quot;2.9.1&quot;"
         errorLine2="                    ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="11"
             column="21"/>
     </issue>
@@ -880,7 +880,7 @@
         errorLine1="lifecycle-runtime = &quot;2.9.1&quot;"
         errorLine2="                    ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="11"
             column="21"/>
     </issue>
@@ -891,7 +891,7 @@
         errorLine1="activity-compose = &quot;1.10.1&quot;"
         errorLine2="                   ~~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="12"
             column="20"/>
     </issue>
@@ -902,7 +902,7 @@
         errorLine1="compose-bom = &quot;2025.06.01&quot;"
         errorLine2="              ~~~~~~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="16"
             column="15"/>
     </issue>
@@ -913,7 +913,7 @@
         errorLine1="navigation-compose = &quot;2.9.1&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="19"
             column="22"/>
     </issue>
@@ -924,7 +924,7 @@
         errorLine1="security-crypto = &quot;1.1.0-beta01&quot;"
         errorLine2="                  ~~~~~~~~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="46"
             column="19"/>
     </issue>
@@ -935,7 +935,7 @@
         errorLine1="camerax = &quot;1.5.2&quot;"
         errorLine2="          ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="52"
             column="11"/>
     </issue>
@@ -946,7 +946,7 @@
         errorLine1="camerax = &quot;1.5.2&quot;"
         errorLine2="          ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="52"
             column="11"/>
     </issue>
@@ -957,7 +957,7 @@
         errorLine1="camerax = &quot;1.5.2&quot;"
         errorLine2="          ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="52"
             column="11"/>
     </issue>
@@ -968,7 +968,7 @@
         errorLine1="androidx-test-ext = &quot;1.2.1&quot;"
         errorLine2="                    ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="57"
             column="21"/>
     </issue>
@@ -979,7 +979,7 @@
         errorLine1="espresso = &quot;3.6.1&quot;"
         errorLine2="           ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="58"
             column="12"/>
     </issue>
@@ -990,7 +990,7 @@
         errorLine1="kotlinx-coroutines-test = &quot;1.6&quot;"
         errorLine2="                          ~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="62"
             column="27"/>
     </issue>
@@ -1001,7 +1001,7 @@
         errorLine1="lifecycle-process = &quot;2.8.7&quot;"
         errorLine2="                    ~~~~~~~">
         <location
-            file="$HOME/Documents/eecchhoo/bitchat-android/gradle/libs.versions.toml"
+            file="$HOME/Documents/eecchhoo/echo-android/gradle/libs.versions.toml"
             line="64"
             column="21"/>
     </issue>
@@ -8161,3 +8161,4 @@
     </issue>
 
 </issues>
+

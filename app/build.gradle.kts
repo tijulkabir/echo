@@ -9,12 +9,21 @@ android {
     namespace = "com.echo.android"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("${rootProject.projectDir}/echo-release-key.jks")
+            storePassword = "echo1234"
+            keyAlias = "echo"
+            keyPassword = "echo1234"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.echo.app"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 31
-        versionName = "1.7.0"
+        versionName = "1.55"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -39,6 +48,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
