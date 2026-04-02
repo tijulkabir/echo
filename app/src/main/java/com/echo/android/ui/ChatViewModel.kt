@@ -185,6 +185,37 @@ class ChatViewModel(
     val teleportedGeo: StateFlow<Set<String>> = state.teleportedGeo
     val geohashParticipantCounts: StateFlow<Map<String, Int>> = state.geohashParticipantCounts
 
+    // MARK: - Screen Navigation for Direct Messaging
+    enum class AppScreen { MESH, DM_LIST, DM_CHAT }
+
+    private val _currentScreen = MutableStateFlow(AppScreen.MESH)
+    val currentScreen: StateFlow<AppScreen> = _currentScreen.asStateFlow()
+
+    private val _dmChatPeerID = MutableStateFlow<String?>(null)
+    val dmChatPeerID: StateFlow<String?> = _dmChatPeerID.asStateFlow()
+
+    fun navigateToDMList() {
+        _currentScreen.value = AppScreen.DM_LIST
+    }
+
+    fun navigateToDMChat(peerID: String) {
+        _dmChatPeerID.value = peerID
+        startPrivateChat(peerID)
+        _currentScreen.value = AppScreen.DM_CHAT
+    }
+
+    fun navigateBackToMesh() {
+        endPrivateChat()
+        _dmChatPeerID.value = null
+        _currentScreen.value = AppScreen.MESH
+    }
+
+    fun navigateBackToDMList() {
+        endPrivateChat()
+        _dmChatPeerID.value = null
+        _currentScreen.value = AppScreen.DM_LIST
+    }
+
     init {
         // Note: Mesh service delegate is now set by MainActivity
         loadAndInitialize()

@@ -36,9 +36,43 @@ import com.echo.android.ui.media.FullScreenImageViewer
  * - SidebarComponents: Navigation drawer with channels and people
  * - AboutSheet: App info and password prompts
  * - ChatUIUtils: Utility functions for formatting and colors
+ *
+ * Now also serves as a screen router for the Direct Messaging feature.
  */
 @Composable
 fun ChatScreen(viewModel: ChatViewModel) {
+    val currentScreen by viewModel.currentScreen.collectAsStateWithLifecycle()
+    val dmPeerID by viewModel.dmChatPeerID.collectAsStateWithLifecycle()
+
+    when (currentScreen) {
+        ChatViewModel.AppScreen.MESH -> {
+            MeshChatContent(viewModel)
+        }
+        ChatViewModel.AppScreen.DM_LIST -> {
+            DirectMessageListScreen(
+                viewModel = viewModel,
+                onBackToMesh = { viewModel.navigateBackToMesh() },
+                onOpenChat = { peerID -> viewModel.navigateToDMChat(peerID) }
+            )
+        }
+        ChatViewModel.AppScreen.DM_CHAT -> {
+            val peerID = dmPeerID
+            if (peerID != null) {
+                DirectMessageChatScreen(
+                    viewModel = viewModel,
+                    peerID = peerID,
+                    onBack = { viewModel.navigateBackToDMList() }
+                )
+            } else {
+                // Fallback if no peer selected
+                viewModel.navigateBackToDMList()
+            }
+        }
+    }
+}
+
+@Composable
+private fun MeshChatContent(viewModel: ChatViewModel) {
     val colorScheme = MaterialTheme.colorScheme
     val messages by viewModel.messages.collectAsStateWithLifecycle()
     val connectedPeers by viewModel.connectedPeers.collectAsStateWithLifecycle()
