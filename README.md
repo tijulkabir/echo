@@ -7,13 +7,13 @@
 > **Mobile Application Development Project**  
 > 2nd Year, 1st Semester
 
-## 📱 Project Overview
+##  Project Overview
 
-Echo is an Android messaging application that enables peer-to-peer communication using Bluetooth mesh networking. The app allows users to send messages without requiring internet connectivity, making it useful for scenarios where traditional networks are unavailable.
+Echo is an Android messaging application that enables peer-to-peer communication using Bluetooth mesh networking. The app allows users to send messages without requiring internet connectivity, making it useful for scenarios where traditional networks are unavailable. This app is mostly alike with the bitchat-android but i have added some core features like the one to one dm with the independent from the mesh network.
 
-## ✨ What I Accomplished
+##  What Accomplished Here
 
-### Core Features Implemented
+### Core Features Implemente
 
 - **Bluetooth Mesh Networking** - Devices automatically discover and connect to nearby peers
 - **End-to-End Encryption** - Messages are secured using industry-standard cryptography (X25519 + AES-256-GCM)
@@ -41,14 +41,14 @@ Echo is an Android messaging application that enables peer-to-peer communication
 4. **Security Features** - Integrated end-to-end encryption for all private communications
 5. **Battery Optimization** - Adaptive power management for background operation
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **Language**: Kotlin
 - **UI**: Jetpack Compose
 - **Minimum SDK**: Android 8.0 (API 26)
 - **Build System**: Gradle with Kotlin DSL
 
-## 📋 Permissions Required
+##  Permissions Required
 
 | Permission | Purpose |
 |------------|---------|
@@ -56,7 +56,7 @@ Echo is an Android messaging application that enables peer-to-peer communication
 | Location | Required by Android for BLE scanning |
 | Notifications | Message alerts |
 
-## 🚀 How to Build
+##  How to Build
 
 1. Clone the repository:
    ```bash
@@ -75,14 +75,15 @@ Echo is an Android messaging application that enables peer-to-peer communication
    ./gradlew installDebug
    ```
 
-## 📸 App Features
+##  App Features
 
 - **Decentralized Communication** - No servers required for mesh messaging
 - **Privacy-Focused** - No accounts, no phone numbers needed
+- **Personal Message ** - One to One secure communication, totally indepentent from the mesh
 - **IRC-Style Commands** - Familiar commands like `/join`, `/msg`, `/who`
 - **Emergency Wipe** - Triple-tap logo to clear all data instantly
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 app/src/main/java/com/echo/android/
@@ -94,7 +95,7 @@ app/src/main/java/com/echo/android/
 └── util/               # Helper utilities
 ```
 
-## 🎯 Learning Outcomes
+##  Learning Outcomes
 
 Through this project, I gained practical experience in:
 
@@ -105,9 +106,9 @@ Through this project, I gained practical experience in:
 - Managing Android permissions and lifecycle
 - UI/UX design with Material Design 3
 
-## ⚠️ Note
+##  Note
 
-This is an academic project developed for learning purposes. It is not intended for production use or distribution on app stores.
+This is an experimental project developed for learning purposes. It is not intended for production use or distribution on app stores at least for now.
 
 ---
 
