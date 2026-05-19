@@ -112,4 +112,4 @@ This is an experimental project developed for learning purposes. It is not inten
 
 ---
 
-*Mobile Application Development - 2nd Year, 1st Semester*
+*by froster*
