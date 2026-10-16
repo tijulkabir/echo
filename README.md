@@ -11,7 +11,7 @@
 
 Echo is an Android messaging application that enables secure, off-grid communication using Bluetooth Low Energy (BLE) mesh networking. Messages are routed peer-to-peer without relying on cellular networks, Wi-Fi, or any centralized server infrastructure.
 
-Built as a course project for **Mobile Application Development (CSE 3120)** during the 2nd Year, 1st Semester at United International University.
+Built as a course project for **Mobile Application Development (CSE 2100)** during the 2nd Year, 1st Semester at PUST.
 
 ## Features
 
