@@ -4,6 +4,10 @@
 
 <h1 align="center">Echo</h1>
 <p align="center">Decentralized peer-to-peer messaging over Bluetooth mesh networks.</p>
+<p align="center">
+  🥇 <b>1st in Engineering Score</b> · 🏅 <b>4th Overall</b><br>
+  July National Hackathon 2026 — organized by JRA
+</p>
 
 ---
 
@@ -73,3 +77,7 @@ The underlying mesh networking protocol and core BLE transport are based on [bit
 ## License
 
 [MIT License](LICENSE.md)
+
+## Hackathon Details
+
+[July National Hackathon 2026 →](https://github.com/BinaryBandits-Hackathon/songket)
